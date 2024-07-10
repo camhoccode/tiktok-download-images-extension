@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Image Downloader",
+  "name": "Image Downloader 2.0",
   "version": "1.0",
   "description": "Download images and copy title to clipboard",
   "permissions": ["activeTab", "scripting", "clipboardWrite"],
@@ -8,11 +8,10 @@
     "service_worker": "background.js"
   },
   "action": {
-    "asdasdqwe": "default_popup popup.html",
     "default_icon": {
-      "16": "4007698.png",
-      "48": "4007698.png",
-      "128": "4007698.png"
+      "16": "etss.png",
+      "48": "etss.png",
+      "128": "etss.png"
     }
   }
 }

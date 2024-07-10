@@ -1,10 +1,14 @@
 (async function () {
-  // Select all img elements that are children of div elements with class 'slick-track'
-  const images = document.querySelectorAll("div.slick-track img");
+  // Select all img elements that are children of ul elements with class 'carousel-pane-list'
+  const images = document.querySelectorAll(
+    "ul.carousel-pane-list img"
+  );
 
   // Function to download an image
   const downloadImage = async (url, filename) => {
-    const response = await fetch(url);
+    // Use a CORS proxy
+    const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+    const response = await fetch(proxyUrl + url);
     const blob = await response.blob();
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
@@ -15,17 +19,15 @@
     URL.revokeObjectURL(a.href);
   };
 
+  // Loop through the images and download each one
   for (let index = 0; index < images.length; index++) {
     const img = images[index];
     const url = img.src;
-    let url2 = url
-      .replace(`:800:800`, ``)
-      .replace(`resize`, `origin`);
     const filename = `image_${index + 1}.jpg`; // Customize the file name as needed
-    await downloadImage(url2, filename);
+    await downloadImage(url, filename);
   }
 
-  let title = document.querySelector("title").textContent;
+  let title = document.querySelector("h1").textContent;
   console.log(`Downloaded ${images.length} images.`);
   console.log(title);
 
